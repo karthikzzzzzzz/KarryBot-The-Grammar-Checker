@@ -106,6 +106,7 @@ const Thesis = () => {
               editorInstance.current = editor;
             }}
             init={{
+              selector: "textarea",
               height: "100%",
               menu: {
                 edit: { title: 'Edit', items: 'undo, redo, selectall' }
