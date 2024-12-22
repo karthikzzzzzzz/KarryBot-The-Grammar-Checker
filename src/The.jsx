@@ -83,7 +83,7 @@ const Thesis = () => {
   };
 
   const navigatetodoc = () => {
-    window.location.href = "https://quillbot.com/grammar-check";
+    window.location.href = "https://teams.microsoft.com/l/message/48:notes/1734911118159?context=%7B%22contextType%22%3A%22chat%22%7D";
   };
 
   return (
@@ -106,7 +106,6 @@ const Thesis = () => {
               editorInstance.current = editor;
             }}
             init={{
-              selector: "textarea",
               height: "100%",
               menu: {
                 edit: { title: 'Edit', items: 'undo, redo, selectall' }
