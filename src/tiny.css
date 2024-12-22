@@ -281,7 +281,7 @@ body {
   }
 
   .container {
-    padding-top: 50px; /* Reduce padding for mobile to use available space */
+    padding-top: 20px; /* Reduce padding for mobile to use available space */
   }
 
   .left-panel {
