@@ -1,5 +1,4 @@
 import React from 'react';
-import Thesis from './Thesis';
 import './App.css';
 import Tiny from './The';
 
