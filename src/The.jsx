@@ -83,7 +83,7 @@ const Thesis = () => {
   };
 
   const navigatetodoc = () => {
-    window.location.href = "https://teams.microsoft.com/l/message/48:notes/1734911118159?context=%7B%22contextType%22%3A%22chat%22%7D";
+    window.location.href = "https://medium.com/@karthikrajan025/building-a-real-time-grammar-correction-web-application-with-fastapi-react-and-websocket-6d65f5f99b6b";
   };
 
   return (
