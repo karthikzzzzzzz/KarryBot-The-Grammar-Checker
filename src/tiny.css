@@ -47,6 +47,7 @@ body {
 }
 
 .editor-container {
+  height:80%;
   margin-top: 60px;
   border: 1px solid black;
   border-radius: 5px;
@@ -276,7 +277,8 @@ body {
  }
  @media (max-width: 768px) {
   .editor-container {
-    min-height: 250px; /* Ensure enough height for text on mobile */
+    min-height: 250px; 
+    height: 30%;/* Ensure enough height for text on mobile */
   }
 
   .container {
