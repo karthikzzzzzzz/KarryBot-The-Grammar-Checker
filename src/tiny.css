@@ -265,11 +265,11 @@ body {
     flex-direction: column; /* Stack items vertically */
     align-items: flex-start; /* Align items to the left */
   }
-  .navbar .nav-links {
+  .navbar-brand {
     flex-direction: column; /* Stack links vertically */
     width: 100%; /* Full width */
   }
-  .navbar .nav-links a {
+  .navbar-brand {
     width: 100%; /* Full width */
     text-align: left; /* Align text to the left */
     padding: 10px; /* Adjust padding */
