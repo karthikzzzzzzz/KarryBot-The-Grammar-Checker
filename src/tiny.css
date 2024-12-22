@@ -47,31 +47,12 @@ body {
 }
 
 .editor-container {
-  flex-grow: 1; /* Allow the editor to take available space */
-  margin-top: 10px; /* Reduce margin for better use of space */
+  height: 80%;
+  margin-top: 60px;
   border: 1px solid black;
   border-radius: 5px;
   background-color: #fff;
-  min-height: 150px; /* Ensure a minimum height on small screens */
 }
-
-@media (max-width: 768px) {
-  .editor-container {
-    min-height: 250px; /* Ensure enough height for text on mobile */
-  }
-
-  .container {
-    padding-top: 50px; /* Reduce padding for mobile to use available space */
-  }
-
-  .left-panel {
-    flex: 1; /* Allow left panel to grow in height */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Space out content */
-  }
-}
-
 
 .download-button {
   margin-top: 20px;
@@ -294,3 +275,19 @@ body {
     padding: 10px; /* Adjust padding */
   }
  }
+ @media (max-width: 768px) {
+  .editor-container {
+    min-height: 250px; /* Ensure enough height for text on mobile */
+  }
+
+  .container {
+    padding-top: 50px; /* Reduce padding for mobile to use available space */
+  }
+
+  .left-panel {
+    flex: 1; /* Allow left panel to grow in height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out content */
+  }
+} 
