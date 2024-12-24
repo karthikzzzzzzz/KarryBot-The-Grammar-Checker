@@ -1,9 +1,10 @@
-# Thesis Project
+# The Grammer Check
 
 A React + FastAPI application for managing and processing thesis-related tasks. This project features a frontend built with React and a backend powered by FastAPI.
 
-You can see the demo at - https://karrygrammer-check.netlify.app/
+You can see the UI at - https://karrygrammer-check.netlify.app/
 
+For detailed instructions and step-by-step guidance to build this application, visit the Medium article at - https://medium.com/@karthikrajan025/building-a-real-time-grammar-correction-web-application-with-fastapi-react-and-websocket-6d65f5f99b6b
 
 
 ## Features
