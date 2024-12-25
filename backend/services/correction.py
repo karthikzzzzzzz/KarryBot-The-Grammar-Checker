@@ -13,13 +13,10 @@ def auto_correct_text(input_text: str) -> dict:
         input_ids = tokenizer(input_text, return_tensors="pt").input_ids
         outputs = model.generate(input_ids, max_length=256)
         edited_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
- 
-        # Compare input and edited text
+
         changes = []
         input_words = input_text.split()
         edited_words = edited_text.split()
- 
-        # Compare the words and capture differences
         for i, (input_word, edited_word) in enumerate(zip(input_words, edited_words)):
             if input_word != edited_word:
                 changes.append({"original": input_word, "corrected": edited_word, "position": i})
