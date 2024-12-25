@@ -4,7 +4,7 @@ body {
   padding: 0;
   background-color: #fffafd;
 }
-
+ 
 .navbar {
   background-color: #FFB7C5;
   color: white;
@@ -19,16 +19,16 @@ body {
   z-index: 10;
   gap: 300px;
 }
-
+ 
 .navbar-brand {
   font-size: 20px;
   font-weight: bold;
   color: black;
   font-style: oblique;
+
 }
-
-
-
+ 
+ 
 .container {
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@ body {
   background-color: #fffafd;
   position: relative;
 }
-
+ 
 .left-panel {
   flex: 1;
   padding: 20px;
@@ -45,7 +45,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-
+ 
 .editor-container {
   height:80%;
   margin-top: 60px;
@@ -53,7 +53,7 @@ body {
   border-radius: 5px;
   background-color: #fff;
 }
-
+ 
 .download-button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -73,12 +73,12 @@ body {
   height: 40px;
   animation: spin 1s linear infinite;
 }
-
+ 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
+ 
 .loading-indicator {
   display: flex;
   align-items: center;
@@ -86,29 +86,29 @@ body {
   flex-direction: column;
   text-align: center;
 }
-
+ 
 .loading-indicator p {
   margin-top: 10px;
   font-size: 16px;
   color: #3498db;
 }
-
-
+ 
+ 
 .download-button:hover {
   background-color: #FFDAE9;
 }
-
+ 
 .right-panel {
   flex: 0.5;
   padding: 20px;
 }
-
+ 
 .right-panel h2 {
   color: #000;
   font-size: 20px;
   margin-bottom: 15px;
 }
-
+ 
 #recommendations-container {
   height: 85%;
   border: 1px solid black;
@@ -118,15 +118,16 @@ body {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   overflow: auto;
 }
-
+ 
 #recommendations-container p {
   cursor: pointer;
   color: black;
   text-align: left;
-  margin-left: 25px;
-  margin-top: 10px;
+  margin-left: 5px;
+  margin-top: 5px;
+  font-weight: bold;
 }
-
+ 
 .recommendation-card {
   border-radius: 8px;
   padding: 5px;
@@ -135,127 +136,129 @@ body {
   opacity: 0.8;
   margin-top: 10px;
 }
-
+ 
 .recommendation-card h3 {
   margin: 0;
-  font-size: 13px;
+  font-size: 15px;
   color: #333;
   text-align: left;
+  margin-left: 5px;
+  margin-top: 10px;
 }
-
+ 
 .recommendation-card p {
   color: #555;
   margin-top: 5px;
 }
-
+ 
 .recommendation-card:hover {
   background-color: #FFA6C9;
 }
-
+ 
 .button-container {
   display: flex;
   justify-content: center;
 }
-
+ 
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
     padding-top: 0;
   }
-
+ 
   .left-panel, .right-panel {
     padding: 15px;
     width: 100%;
   }
-
+ 
   .left-panel h1 {
     font-size: 18px;
     margin-bottom: 15px;
   }
-
+ 
   .download-button {
     width: 100%;
   }
-
+ 
   #recommendations-container {
     height: auto;
     padding: 8px;
   }
-
+ 
   .recommendation-card {
     padding: 10px;
     margin-bottom: 8px;
   }
-
+ 
   .recommendation-card h3 {
     font-size: 14px;
   }
-
+ 
   .button-container {
     flex-direction: column;
     gap: 10px;
   }
 }
-
+ 
 @media (max-width: 1024px) and (min-width: 768px) {
   .container {
     flex-direction: row;
   }
-
+ 
   .left-panel, .right-panel {
     padding: 20px;
   }
-
+ 
   .left-panel h1 {
     font-size: 20px;
     margin-bottom: 15px;
   }
-
+ 
   .download-button {
     width: 80%;
   }
-
+ 
   #recommendations-container {
     height: 80%;
     padding: 10px;
   }
-
+ 
   .recommendation-card {
     padding: 8px;
     margin-bottom: 6px;
   }
-
+ 
   .recommendation-card h3 {
     font-size: 15px;
   }
-
+ 
   .button-container {
     gap: 60px;
   }
 }
-
+ 
 @media (min-width: 1025px) {
   .container {
     flex-direction: row;
   }
-
+ 
   .left-panel, .right-panel {
     padding: 20px;
   }
-
+ 
   .download-button {
     width: 200px;
   }
-
+ 
   .recommendation-card {
     padding: 12px;
     margin-bottom: 10px;
   }
-
+ 
   .recommendation-card h3 {
     font-size: 16px;
   }
-
+ 
   .button-container {
     gap: 90px;
   }
@@ -274,21 +277,21 @@ body {
     text-align: left; /* Align text to the left */
     padding: 10px; /* Adjust padding */
   }
- }
- @media (max-width: 768px) {
+}
+@media (max-width: 768px) {
   .editor-container {
     min-height: 250px; 
     height: 30%;/* Ensure enough height for text on mobile */
   }
-
+ 
   .container {
     padding-top: 20px; /* Reduce padding for mobile to use available space */
   }
-
+ 
   .left-panel {
     flex: 1; /* Allow left panel to grow in height */
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Space out content */
   }
-} 
+}
