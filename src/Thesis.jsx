@@ -1,39 +1,57 @@
-import React, { useEffect, useRef, useState } from "react";
-import Quill from "quill";
-import "quill/dist/quill.snow.css";
-import jsPDF from "jspdf";
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import 'quill/dist/quill.snow.css';
+import jsPDF from 'jspdf';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import RecommendationCard from './suggestions';
+import  './writing.css';
+import EditorComponent from './editor';
 
-const Thesis = () => {
 
+const Writing = () => {
+ 
   const editorInstance = useRef(null);
   const wsRef = useRef(null);
   const debounceTimeout = useRef(null);
   const [recommendations, setRecommendations] = useState([]);
+  const [loading, setLoading] = useState(false);
+  
+
+
+  const maxWordCount = parseInt(process.env.REACT_APP_MAX_WORD_COUNT, 10);
 
   useEffect(() => {
-    wsRef.current = new WebSocket("ws://localhost:8000/ws/thesis");
+    wsRef.current = new WebSocket('ws://127.0.0.1:8000/api/v1/ws/thesis');
     wsRef.current.onopen = () => {
-      console.log("WebSocket connected.");
+      console.log('WebSocket connection established.');
     };
-    
     wsRef.current.onmessage = (event) => {
-      const aiRecommendation = event.data; 
-      console.log(aiRecommendation)
+      const data = JSON.parse(event.data);
+      if (data.error) {
+        toast.error(data.error);
+        setLoading(false);
+        return;
+      }
+      const { corrected, changes } = data;
       setRecommendations((prevRecommendations) => {
-        if (!prevRecommendations.includes(aiRecommendation)) {
-          return [...prevRecommendations, aiRecommendation];
-        }
-        return prevRecommendations; 
+        const newRecommendations = changes.filter(
+          (newChange) =>
+            !prevRecommendations.some(
+              (prevChange) => prevChange.original === newChange.original && prevChange.position === newChange.position
+            )
+        );
+        return [...prevRecommendations, ...newRecommendations];
       });
-    };
-    wsRef.current.onerror = (error) => {
-      console.error("WebSocket error:", error);
-    };
-   
-    wsRef.current.onclose = () => {
-      console.log("WebSocket connection closed.");
+
+      setLoading(false);
     };
 
+    wsRef.current.onerror = () => {
+      console.log('WebSocket connection error.');
+    };
+    wsRef.current.onclose = () => {
+      console.log('WebSocket connection closed.');
+    };
     return () => {
       if (wsRef.current) {
         wsRef.current.close();
@@ -42,41 +60,45 @@ const Thesis = () => {
   }, []);
 
  
-  useEffect(() => {
-    if (!editorInstance.current) {
-      editorInstance.current = new Quill("#editor-container", {
-        theme: "snow",
-        modules: {
-          toolbar: [
-            [{ font: ["arial", "times-new-roman", "courier", "roboto"] }],
-            [{ header: [1, 2, 3, false] }],
-            ["bold", "italic", "underline", "strike"],
-            [{ list: "ordered" }, { list: "bullet" }],
-            [{ script: "sub" }, { script: "super" }],
-            [{ indent: "-1" }, { indent: "+1" }],
-            [{ align: [] }],
-            ["link", "image", "video"],
-            ["clean"],
-          ],
-        },
-        placeholder: "Start writing your thesis...",
-      });
-     
-      editorInstance.current.on("text-change", () => {
-        if (debounceTimeout.current) {
-          clearTimeout(debounceTimeout.current);
-        }
-        debounceTimeout.current = setTimeout(() => {
-          const editorContent = editorInstance.current.getText();
-          if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-            wsRef.current.send(editorContent);
-          }
-        }, 3000); 
-      });
-    }
-  }, []);
 
-  const handleSave = () => {
+  const handleEditorChange = (content, editor) => {
+    if (debounceTimeout.current) {
+      clearTimeout(debounceTimeout.current);
+    }
+
+    debounceTimeout.current = setTimeout(() => {
+      const plainTextContent = editor.getText({ format: 'text' });
+      const wordcount = plainTextContent.split(' ').length;
+      console.log(plainTextContent);
+
+      if (wordcount > maxWordCount) {
+        toast.error("error");
+      } else {
+        if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+          setLoading(true);
+          wsRef.current.send(plainTextContent);
+        } else {
+          toast.error("error");
+        }
+      }
+    }, 3000);
+  };
+
+  const handleRecommendationClick = useCallback((correctedWord, position) => {
+    if (editorInstance.current) {
+      const content = editorInstance.current.getText({ format: 'text' });
+      const words = content.split(' ');
+      words[position] = correctedWord;
+      editorInstance.current.setText(words.join(' '));
+      setRecommendations((prevRecommendations) =>
+        prevRecommendations.filter(
+          (change) => change.position !== position || change.corrected !== correctedWord
+        )
+      );
+    }
+  }, [editorInstance, setRecommendations]);
+
+  const handleSave = useCallback(() => {
     try {
       const editorContent = editorInstance.current.getText();
       const pdf = new jsPDF();
@@ -84,48 +106,46 @@ const Thesis = () => {
       const randomFilename = `thesis_${Math.random().toString(36)}.pdf`;
       pdf.save(randomFilename);
     } catch (error) {
-      console.error("Error generating PDF:", error);
-      alert("Failed to save the file. Please try again.");
+      toast.error('Error saving the document.');
     }
-  };
-  
-
-  const handleRecommendationClick = (recommendation) => {
-    editorInstance.current.setText(recommendation);
-  };
-
-   
+  }, [editorInstance]);
 
   return (
-    <div style={{display: "flex",height: "100vh",fontFamily: "Arial, sans-serif",backgroundColor: "#ffffff",}}>
-      <div style={{flex: 1,padding: "20px",backgroundColor: "#ffffff",display: "flex",flexDirection: "column",}}>
-        <h1 style={{ marginBottom: "20px", color: "#333" }}>Thesis Writing</h1>
-        <div id="editor-container" style={{height: "80%",border: "1px solid #ccc",borderRadius: "5px",backgroundColor: "#fff",}}></div>
-        <button onClick={handleSave} style={{marginTop: "20px",padding: "10px 20px",backgroundColor: "#007bff",color: "#fff",border: "none",borderRadius: "5px",cursor: "pointer",boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",transition: "background-color 0.2s",}}>
-          Download
-        </button>
+    <div className="writing-container">
+    <div className="editor-container">
+      <div className="header">
+        <h1>KarryBot</h1>
+        <button onClick={handleSave} className="save-btn">Save & Download</button>
       </div>
-      <div style={{ flex: 0.5, padding: "20px" }}>
-        <h2 style={{ color: "#00000", marginBottom: "15px" }}>
-          AI Recommendations
-        </h2>
-        <div id="recommendations-container" style={{ height: "85%",border: "1px solid #ccc",borderRadius: "5px",padding: "10px",backgroundColor: "#ffffff",boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",overflow: "auto",}}>
-          {recommendations.map((recommendation, index) => (
-            <p
-              key={index}
-              style={{
-                cursor: "pointer",
-                color: "black",
-              }}
-              onClick={() => handleRecommendationClick(recommendation)}
-            >
-              {recommendation}
-            </p>
-          ))}
-        </div>
+
+      <div className="editor">
+        <EditorComponent onEditorChange={handleEditorChange} editorInstanceRef={editorInstance} />
       </div>
     </div>
-  );
+
+    <div className="recommendation-container">
+      <div className="recommendation-header">
+        <h2>Suggestions</h2>
+        {loading ? (
+          <div className="spinner"></div> 
+        ) : (
+          <div className="recommendations-list">
+            {recommendations.map((change, index) => (
+              <RecommendationCard
+                key={index}
+                original={change.original}
+                corrected={change.corrected}
+                onClick={() => handleRecommendationClick(change.corrected, change.position)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+
+    <ToastContainer />
+  </div>
+);
 };
 
-export default Thesis;
+export default Writing;

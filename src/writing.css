@@ -1,0 +1,99 @@
+.writing-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f0f8ff;
+  }
+  
+  .editor-container {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .save-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .save-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .editor {
+    height: 80%;
+    padding: 10px;
+    
+   
+  }
+  
+  .recommendation-container {
+    width: 30%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recommendation-header h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .recommendations-list {
+    margin-top: 20px;
+  }
+  
+  .response-container {
+    margin-top: 30px;
+  }
+  
+  .response-container p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .responses-list {
+    margin-top: 10px;
+  }
+  
+  .response {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

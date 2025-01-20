@@ -6,7 +6,6 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 tokenizer = AutoTokenizer.from_pretrained("grammarly/coedit-xl")
 model = T5ForConditionalGeneration.from_pretrained("grammarly/coedit-xl")
  
- 
 def auto_correct_text(input_text: str) -> dict:
     
     try:
