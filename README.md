@@ -5,9 +5,13 @@ A React + FastAPI application for managing and processing grammar check-related 
 
 You can see the UI at - https://karrygrammer-check.netlify.app/
 
+This project supports both Quill and TinyMCE Editor 
+
+
 ![Screenshot 2024-12-25 141404](https://github.com/user-attachments/assets/f467500e-edc1-445a-a3a7-2687118e920a)
 
 
+![image](https://github.com/user-attachments/assets/f181a825-078d-4031-854a-dbf67d0d5eaf)
 
 
 
