@@ -5,6 +5,10 @@ A React + FastAPI application for managing and processing grammar check-related 
 
 You can see the UI at - https://karrygrammer-check.netlify.app/
 
+![Screenshot 2024-12-25 141404](https://github.com/user-attachments/assets/f467500e-edc1-445a-a3a7-2687118e920a)
+
+
+
 
 
 For detailed instructions and step-by-step guidance to build this application, visit the Medium article at - https://medium.com/@karthikrajan025/building-a-real-time-grammar-correction-web-application-with-fastapi-react-and-websocket-6d65f5f99b6b
