@@ -1,8 +1,19 @@
-# The Grammer Check
+
+# The Grammar Check
 
 A React + FastAPI application for managing and processing grammar check-related tasks. This project features a frontend built with React and a backend powered by FastAPI.
 
 You can see the UI at - https://karrygrammer-check.netlify.app/
+
+This project supports both Quill and TinyMCE Editor 
+
+
+![Screenshot 2024-12-25 141404](https://github.com/user-attachments/assets/f467500e-edc1-445a-a3a7-2687118e920a)
+
+
+![image](https://github.com/user-attachments/assets/f181a825-078d-4031-854a-dbf67d0d5eaf)
+
+
 
 For detailed instructions and step-by-step guidance to build this application, visit the Medium article at - https://medium.com/@karthikrajan025/building-a-real-time-grammar-correction-web-application-with-fastapi-react-and-websocket-6d65f5f99b6b
 
@@ -38,38 +49,44 @@ For detailed instructions and step-by-step guidance to build this application, v
    ```bash
    git clone https://github.com/yourusername/thesis.git
    cd thesis
+   ```
 
+2. **Install Frontend Dependencies**
+   Navigate to the frontend directory (if separate from the root directory), or use the root directory if the frontend and backend are in the same folder.
 
-## Install Frontend Dependencies
-Navigate to the frontend directory (if separate from the root directory), or use the root directory if the frontend and backend are in the same folder.
+   ```bash
+   npm install
+   ```
 
-```bash
-npm install
-**
-Copy code
-cd backend
-pip install -r requirements.txt
-Run the frontend:
+3. **Install Backend Dependencies**
+   
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   ```
 
-To run the React development server, execute:
+4. **Run the frontend**
 
-bash
-Copy code
-npm start
-The frontend will be available at http://localhost:3000.
+   To run the React development server, execute:
 
-Run the backend:
+   ```bash
+   npm start
+   ```
+   The frontend will be available at http://localhost:3000.
 
-To start the FastAPI server, use:
+5. **Run the backend**
 
-bash
-Copy code
-uvicorn main:app --reload
-The backend will be available at http://localhost:8000.
+   To start the FastAPI server, use:
 
-Folder Structure
-/src: Contains React components, state management, and UI files.
-/public: Contains public assets like images, icons, etc.
-/backend: Contains FastAPI backend code (if separate).
-/node_modules: Directory for npm packages.
-package.json: Project's npm dependencies and scripts.
+   ```bash
+   uvicorn main:app --reload
+   ```
+   The backend will be available at http://localhost:8000.
+
+## Folder Structure
+
+- /src: Contains React components, state management, and UI files.
+- /public: Contains public assets like images, icons, etc.
+- /backend: Contains FastAPI backend code (if separate).
+- /node_modules: Directory for npm packages.
+- package.json: Project's npm dependencies and scripts.
