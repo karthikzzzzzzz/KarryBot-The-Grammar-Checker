@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import 'quill/dist/quill.snow.css';
-import jsPDF from 'jspdf';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RecommendationCard from './suggestions';
@@ -98,34 +97,26 @@ const Writing = () => {
     }
   }, [editorInstance, setRecommendations]);
 
-  const handleSave = useCallback(() => {
-    try {
-      const editorContent = editorInstance.current.getText();
-      const pdf = new jsPDF();
-      pdf.text(editorContent, 10, 10);
-      const randomFilename = `thesis_${Math.random().toString(36)}.pdf`;
-      pdf.save(randomFilename);
-    } catch (error) {
-      toast.error('Error saving the document.');
-    }
-  }, [editorInstance]);
+  const navigatetodoc = () => {
+    window.location.href = "https://medium.com/@karthikrajan025/building-a-real-time-grammar-correction-web-application-with-fastapi-react-and-websocket-6d65f5f99b6b";
+  };
 
   return (
     <div className="writing-container">
     <div className="editor-container">
       <div className="header">
         <h1>KarryBot</h1>
-        <button onClick={handleSave} className="save-btn">Save & Download</button>
+        <button onClick={navigatetodoc} className="save-btn">Documentation</button>
       </div>
 
-      <div className="editor">
+      <div style={{height:"70%"}} >
         <EditorComponent onEditorChange={handleEditorChange} editorInstanceRef={editorInstance} />
       </div>
     </div>
 
     <div className="recommendation-container">
       <div className="recommendation-header">
-        <h2>Suggestions</h2>
+        <h2>SUGGESTIONS</h2>
         {loading ? (
           <div className="spinner"></div> 
         ) : (

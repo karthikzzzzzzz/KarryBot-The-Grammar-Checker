@@ -5,12 +5,12 @@ import { useState, useRef } from 'react';
 
 const Editor = ({ onEditorChange, editorInstanceRef }) => {
   const [wordcount, setWordcount] = useState(0);
-  const quillRef = useRef(null); // Create a reference for the Quill instance
+  const quillRef = useRef(null); 
 
   useEffect(() => {
-    // Only initialize Quill once to avoid multiple renders
+   
     if (!quillRef.current) {
-      // Initialize Quill editor
+     
       quillRef.current = new Quill('#editor', {
         modules: {
           toolbar: [
@@ -28,24 +28,23 @@ const Editor = ({ onEditorChange, editorInstanceRef }) => {
         theme: 'snow',
       });
 
-      // Set the Quill instance to the passed ref
+    
       editorInstanceRef.current = quillRef.current;
 
-      // Listen to text-change events
       quillRef.current.on('text-change', () => {
-        const content = quillRef.current.getText(); // Get the text content
+        const content = quillRef.current.getText(); 
         if (onEditorChange) {
-          onEditorChange(content, quillRef.current); // Pass content back to parent
+          onEditorChange(content, quillRef.current); 
         }
 
-        // Count words and update word count
+     
         const words = content.trim().split(/\s+/).filter(Boolean);
         setWordcount(words.length);
       });
     }
 
     return () => {
-      // Clean up when the component is unmounted
+     
       if (quillRef.current) {
         quillRef.current.off('text-change');
       }
@@ -53,12 +52,11 @@ const Editor = ({ onEditorChange, editorInstanceRef }) => {
   }, [onEditorChange, editorInstanceRef]);
 
   return (
-    <div className="editor-container">
-      <div id="editor" className="editor"></div>
-      <div className="word-count">
-        <p>Word Count: {wordcount}</p>
-      </div>
-    </div>
+  
+      <><div id="editor" className="editor"></div><div className="word-count">
+      <p style={{fontWeight:"bold"}}>Word Count: {wordcount}</p>
+    </div></>
+   
   );
 };
 
