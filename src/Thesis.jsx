@@ -102,10 +102,13 @@ const Writing = () => {
   };
 
   return (
+    <>
+    <h1 style={{textAlign:"center",justifyContent:"center",fontSize:"20px",fontFamily:"sans-serif",fontStyle:"italic"}}>KarryBot-The Grammer Checker</h1>
     <div className="writing-container">
+      
     <div className="editor-container">
       <div className="header">
-        <h1>KarryBot</h1>
+        <h1 style={{fontSize:"20px",fontFamily:"sans-serif",fontStyle:"italic"}}>Writing made Flawless!</h1>
         <button onClick={navigatetodoc} className="save-btn">Documentation</button>
       </div>
 
@@ -116,7 +119,7 @@ const Writing = () => {
 
     <div className="recommendation-container">
       <div className="recommendation-header">
-        <h2>SUGGESTIONS</h2>
+        <h2 style={{fontSize:"20px"}}>SUGGESTIONS</h2>
         {loading ? (
           <div className="spinner"></div> 
         ) : (
@@ -136,6 +139,7 @@ const Writing = () => {
 
     <ToastContainer />
   </div>
+  </>
 );
 };
 
