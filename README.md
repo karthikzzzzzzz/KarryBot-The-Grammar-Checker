@@ -13,6 +13,9 @@ This project supports both Quill and TinyMCE Editor
 
 ![image](https://github.com/user-attachments/assets/f181a825-078d-4031-854a-dbf67d0d5eaf)
 
+![Uploading Screenshot 2025-02-21 at 7.17.09 PM.png…]()
+
+
 
 
 For detailed instructions and step-by-step guidance to build this application, visit the Medium article at - https://medium.com/@karthikrajan025/building-a-real-time-grammar-correction-web-application-with-fastapi-react-and-websocket-6d65f5f99b6b
