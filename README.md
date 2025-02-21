@@ -13,7 +13,6 @@ This project supports both Quill and TinyMCE Editor
 
 ![image](https://github.com/user-attachments/assets/f181a825-078d-4031-854a-dbf67d0d5eaf)
 
-![Uploading Screenshot 2025-02-21 at 7.17.09 PM.png…]()
 
 
 
